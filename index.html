@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project: Avenger Class Armor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top right, #0a0a0f, #030308);
+      color: #e0e0ff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.05em;
+    }
+    .neon {
+      text-shadow: 0 0 10px #00f0ff, 0 0 20px #0080ff;
+    }
+    .card {
+      background: rgba(10, 10, 30, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.1);
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+
+<body class="p-6">
+  <header class="text-center mb-10">
+    <h1 class="text-4xl font-bold neon mb-2">PROJECT: AVENGER CLASS ARMOR</h1>
+    <p class="text-gray-400 italic">A technical roadmap to build high-performance powered exosuits</p>
+  </header>
+
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+    <!-- Skill Stack Chart -->
+    <section class="card">
+      <h2 class="text-2xl font-bold mb-4 text-cyan-400">Skill Stack Distribution</h2>
+      <canvas id="skillChart"></canvas>
+      <p class="text-sm mt-4 text-gray-400">
+        Core disciplines required to design, fabricate, and operate a powered suit: blending mechanics, materials, and computation.
+      </p>
+    </section>
+
+    <!-- Material Matrix -->
+    <section class="card">
+      <h2 class="text-2xl font-bold mb-4 text-pink-400">Material Matrix</h2>
+      <canvas id="materialChart"></canvas>
+      <p class="text-sm mt-4 text-gray-400">
+        Real-world super-materials benchmarked against fictional armor properties.
+      </p>
+    </section>
+
+    <!-- Energy Density Gap -->
+    <section class="card col-span-1 lg:col-span-2">
+      <h2 class="text-2xl font-bold mb-4 text-yellow-400">Energy Density Gap</h2>
+      <canvas id="energyChart"></canvas>
+      <p class="text-sm mt-4 text-gray-400">
+        Comparing energy sources—showing the challenge of achieving flight-worthy power in compact, wearable systems.
+      </p>
+    </section>
+
+    <!-- Neural Interface Logic -->
+    <section class="card">
+      <h2 class="text-2xl font-bold mb-4 text-green-400">Neural Interface Logic</h2>
+      <div class="grid gap-4 text-center text-gray-300">
+        <div class="p-3 bg-gray-900/50 rounded-lg border border-cyan-400">Brain Signal (EEG / EMG)</div>
+        <div class="p-3 bg-gray-900/50 rounded-lg border border-blue-400">BCI Processor</div>
+        <div class="p-3 bg-gray-900/50 rounded-lg border border-purple-400">Suit Control CPU</div>
+        <div class="p-3 bg-gray-900/50 rounded-lg border border-pink-400">Actuator/Servo System</div>
+      </div>
+      <p class="text-sm mt-4 text-gray-400">
+        Signal latency must be under 50 ms for responsive motion synchronization between user and exosuit.
+      </p>
+    </section>
+
+    <!-- Feasibility vs Cost -->
+    <section class="card">
+      <h2 class="text-2xl font-bold mb-4 text-amber-400">Feasibility vs Cost Map</h2>
+      <canvas id="costChart"></canvas>
+      <p class="text-sm mt-4 text-gray-400">
+        Positioning real-world components based on technical feasibility and production cost.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="mt-12 text-center text-gray-500 text-sm">
+    <p>© 2026 StarkTech Simulation Initiative — Engineered with Tailwind & Chart.js</p>
+  </footer>
+
+  <script>
+    // Skill Stack
+    new Chart(document.getElementById('skillChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Mechanical Engineering', 'Material Science', 'Electronics', 'Computer Science', 'AI & Control Systems'],
+        datasets: [{
+          data: [25, 20, 20, 15, 20],
+          backgroundColor: ['#00FFFF', '#FF00FF', '#FFD700', '#00FF88', '#FF5555'],
+          borderColor: '#0a0a1a'
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: '#e0e0ff' } },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.formattedValue}%` } }
+        }
+      }
+    });
+
+    // Material Matrix
+    new Chart(document.getElementById('materialChart'), {
+      type: 'radar',
+      data: {
+        labels: ['Strength', 'Weight', 'Thermal Resistance', 'Energy Absorption', 'Flexibility'],
+        datasets: [
+          { label: 'Titanium Alloy', data: [9, 5, 8, 6, 4], borderColor: '#00FFFF', backgroundColor: 'rgba(0,255,255,0.2)' },
+          { label: 'Graphene', data: [10, 10, 9, 8, 7], borderColor: '#FF00FF', backgroundColor: 'rgba(255,0,255,0.2)' },
+          { label: 'Spider Silk', data: [7, 10, 5, 9, 10], borderColor: '#FFD700', backgroundColor: 'rgba(255,215,0,0.2)' }
+        ]
+      },
+      options: {
+        scales: { r: { angleLines: { color: '#333' }, grid: { color: '#444' }, pointLabels: { color: '#ccc' } } },
+        plugins: { legend: { labels: { color: '#e0e0ff' } } }
+      }
+    });
+
+    // Energy Density
+    new Chart(document.getElementById('energyChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Li-Ion', 'Li-Sulfur', 'Hydrogen Fuel', 'Mini Fusion (Concept)', 'Arc Reactor (Fictional)'],
+        datasets: [{
+          label: 'Energy Density (Wh/kg)',
+          data: [250, 500, 33000, 1000000, 99999999],
+          backgroundColor: ['#00FFFF', '#FF00FF', '#FFD700', '#00FF88', '#FF4444']
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          legend: { labels: { color: '#e0e0ff' } },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed.x.toLocaleString()} Wh/kg` } }
+        },
+        scales: {
+          x: { ticks: { color: '#ccc' }, grid: { color: '#222' } },
+          y: { ticks: { color: '#ccc' }, grid: { color: '#222' } }
+        }
+      }
+    });
+
+    // Feasibility vs Cost
+    new Chart(document.getElementById('costChart'), {
+      type: 'bubble',
+      data: {
+        datasets: [
+          { label: 'HUD Display', data: [{x: 90, y: 40, r: 12}], backgroundColor: '#00FFFF' },
+          { label: 'Exoskeleton Frame', data: [{x: 70, y: 80, r: 15}], backgroundColor: '#FF00FF' },
+          { label: 'Jetpack Thrusters', data: [{x: 30, y: 95, r: 18}], backgroundColor: '#FFD700' },
+          { label: 'AI Assistant', data: [{x: 85, y: 50, r: 10}], backgroundColor: '#00FF88' }
+        ]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Technical Feasibility (%)', color: '#aaa' }, min: 0, max: 100, ticks: { color: '#ccc' } },
+          y: { title: { display: true, text: 'Cost (Relative %)', color: '#aaa' }, min: 0, max: 100, ticks: { color: '#ccc' } }
+        },
+        plugins: { legend: { labels: { color: '#e0e0ff' } } }
+      }
+    });
+  </script>
+</body>
+</html>
